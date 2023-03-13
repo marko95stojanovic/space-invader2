@@ -81,6 +81,9 @@ h3 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     margin: 20px 0;
+    font-size: 20px;
+
+
 }
 .grille div {
     width: 25px;
@@ -120,4 +123,23 @@ h5 {
     justify-content: center;
     justify-items: center;
     margin-top: 2%;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.boutton-jouer1{
+    display: flex;
+    justify-content: center;
 }
