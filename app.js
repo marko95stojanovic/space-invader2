@@ -1,18 +1,18 @@
 const body = document.getElementById('body');
 const grille = document.getElementById('grille');
 const button = document.getElementById('button');
-const case1= document.getElementById('case')
+const case1 = document.getElementById('case');
+const alien = document.getElementsByClassName('alien');
 
 button.onclick = function createVaisseaux() {
     for (let i = 0; i < 240; i++) {
         let vaisseaux;
         vaisseaux = document.createElement('div');
         vaisseaux.setAttribute('id', 'case-' + i);
-        vaisseaux.style.border = 'solid red 1px'
+        vaisseaux.style.border = 'solid red 1px';
+        vaisseaux.className = 'alien';
         grille.appendChild(vaisseaux);
     }
-
-    
 };
 
 
