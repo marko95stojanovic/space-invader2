@@ -1,12 +1,23 @@
+body {
+   
+    background: url(espace.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+
 .grille {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #000;
-    width: 500px;
+    border: 1px solid black;
+    width: 550px;
     height: 500px;
     margin: 0 auto;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    background: url(ressources/background-black.png);
+    box-shadow: 0 2px 10px black;
+    background: black;
     animation: background-defile 5s linear infinite;
 }
 
@@ -21,6 +32,7 @@
 
 h3 {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 20px 0;
 }
 .grille div {
@@ -34,7 +46,7 @@ h3 {
     background-size: contain;
 }
 .alien {
-    background: url(ressources/ennemies.png);
+    background: url(alien.png);
     background-position: center;
     background-size: contain;
 }
@@ -43,4 +55,22 @@ h3 {
 }
 .laser {
     background-color: orange;
+}
+
+h5 {
+    color: white;
+}
+
+.case1{
+    color : pink;
+    width: 5px;
+    height: 10px;
+    border: solid 2px red;
+}
+
+.boutton-jouer{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 2%;
 }
