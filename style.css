@@ -45,7 +45,7 @@ h3 {
     background-color: orange;
 } */
 
-body {
+/* body {
    
     background: url(espace.gif) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -144,11 +144,208 @@ h5 {
     justify-content: center;
 }
 
+.photo-soucoupe{
+    background: url(soucoupe.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} */
+
+
+
+/* body {
+   
+    background: url(espace.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+.grille {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 550px;
+    height: 500px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px black;
+    background: black;
+    animation: background-defile 5s linear infinite;
+}
+@keyframes background-defile {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: 256px;
+    }
+}
+h3 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px 0;
+    font-size: 20px;
+}
+.grille div {
+    width: 25px;
+    height: 25px;
+}
+.tireur {
+    background: url(ressources/vaisseau.png);
+    transform: rotate(180deg);
+    background-position: center;
+    background-size: contain;
+}
+.alien {
+    background: url(alien.png);
+    background-position: center;
+    background-size: contain;
+}
+.boom {
+    background-color: red;
+}
+.laser {
+    background-color: orange;
+}
+h5 {
+    color: white;
+}
+.case1{
+    color : pink;
+    width: 5px;
+    height: 10px;
+    border: solid 2px red;
+}
+.boutton-jouer{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 2%;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.boutton-jouer1{
+    display: flex;
+    justify-content: center;
+}
+
 .soucoupe{
     background: url(soucoupe.png) ; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+} */
+
+
+
+body {
    
+    background: url(espace.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+.grille {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 550px;
+    height: 500px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px black;
+    background: black;
+    animation: background-defile 5s linear infinite;
+}
+@keyframes background-defile {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: 256px;
+    }
+}
+h3 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px 0;
+    font-size: 20px;
+}
+.grille div {
+    width: 25px;
+    height: 25px;
+}
+.tireur {
+    background: url(ressources/vaisseau.png);
+    transform: rotate(180deg);
+    background-position: center;
+    background-size: contain;
+}
+.alien {
+    background: url(alien.png);
+    background-position: center;
+    background-size: contain;
+}
+.boom {
+    background-color: red;
+}
+.laser {
+    background-color: orange;
+}
+h5 {
+    color: white;
+}
+.case1{
+    color : pink;
+    width: 5px;
+    height: 10px;
+    border: solid 2px red;
+}
+.boutton-jouer{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 2%;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.boutton-jouer1{
+    display: flex;
+    justify-content: center;
+}
+
+.soucoupe{
+    background: url(soucoupe.png) ; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
