@@ -49,9 +49,12 @@ h3 {
 .boom {
     background-color: red;
 }
+
 .laser {
-    background-color: orange;
+    background-image: url(laser.png);
+    background-size: 2px 15px;
 }
+
 h5 {
     color: white;
 }
