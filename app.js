@@ -5,7 +5,7 @@ const case1 = document.getElementById('case');
 const alien = document.getElementsByClassName('alien');
 const enemies = [1,2,3,4,5,6,7,8,9,10,11,12,21,22,23,24,25,26,27,28,29,30,31,32,41,42,43,44,45,46,47,48,49,50,51,52]
 let cellCount = 0;
-
+// let soucoupe= doucment.getElementById('case-228');
 
 button.onclick = function createVaisseaux() {
     for (let i = 0; i < 240; i++) {
@@ -13,6 +13,8 @@ button.onclick = function createVaisseaux() {
         vaisseaux = document.createElement('div');
         vaisseaux.setAttribute('id', 'case-' + i);
         vaisseaux.style.border = 'solid  1px';
+
+        
         enemies.forEach(position=>{
             if(position==i){
                 vaisseaux.className = 'alien';
@@ -20,6 +22,43 @@ button.onclick = function createVaisseaux() {
         })
         grille.appendChild(vaisseaux);
     }
+    document.getElementById('case-229').className = 'soucoupe'
+
+    
+
+
+
+// On prend l'élément HTML avec l'id de la soucoupe
+// const soucoupe = document.getElementById('case-229');
+
+// // Position de base de la soucoupe
+// let positionsoucoupe = 0;
+
+// // la fonction pour déplacer la soucoupe sur la gauche
+// function deplacersoucoupeGauche() {
+//   positionsoucoupe -= 10; // pour bouger la soucoupe de 10 px vers la gauche
+//   soucoupe.style.left = positionsoucoupe + 'px'; // pour la maj de la position de la soucoupe
+// }
+
+// // la fonction pour bouger la soucoupe vers la droite
+// function deplacersoucoupeDroite() {
+//   positionsoucoupe += 10; // bouger la soucoupe de 10 px sur la droite
+//   soucoupe.style.left = positionsoucoupe + 'px'; // maj de la position de la soucoupe
+// }
+
+// //  les événements clavier pour déplacer la soucoupe
+// document.addEventListener('keydown', (event) => {
+//   if (event.key === 'ArrowLeft') {
+//     deplacersoucoupeGauche();
+//   } else if (event.key === 'ArrowRight') {
+//     deplacersoucoupeDroite();
+//   }
+// });
+
+
+
+
+
 
 
 };

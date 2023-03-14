@@ -143,3 +143,12 @@ h5 {
     display: flex;
     justify-content: center;
 }
+
+.soucoupe{
+    background: url(soucoupe.png) ; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+   
+}
