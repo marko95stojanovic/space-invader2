@@ -14,11 +14,18 @@ var vitesseLaserMoyen = 1000
 var vitesseLaserDifficile = 1600
 var vitesseLaser
 
+function bruit() {
+    var bruit = new Audio();
+    bruit.src = "songLaser.mp3";
+    bruit.play();
+}
+
 
 
 // creation de la grille + ses niveaux de difficulter en fonction du laser
 // + le niveau est dur + le laser est lent
 function createVaisseaux(difficulter) {
+
     if (isPlaying) return;
     isPlaying = true;
     if (difficulter == 'facile') vitesseLaser = vitesseLaserFacile
@@ -167,6 +174,7 @@ if (direction == ' '){
    var interval = setInterval(moveLaser,vitesseLaser)
 
    
+bruit()
 
 //  -----BOUGER LE LASER ET SA DIRECTION -----
 // sert a bouger le laser on recupere l'id de la case + on ajoute la class laser a la prochaine position qui 
@@ -214,6 +222,8 @@ if (direction == ' '){
       
    }
 }
+
+
 
 }
 
