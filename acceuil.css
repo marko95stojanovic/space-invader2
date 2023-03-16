@@ -1,3 +1,4 @@
+/* PAGE D'ACCUEIL AVEC CARROUSSEL + LES BOUTTONS POUR JOUER */
 body {
     background: url(espace-acceuil.gif) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -51,6 +52,8 @@ body {
     }
   }
   
+
+  /* automatic carrousel */
   /* @keyframes snap {
     96% {
       scroll-snap-align: center;

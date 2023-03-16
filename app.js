@@ -1,40 +1,3 @@
-// const body = document.getElementById('body');
-// const grille = document.getElementById('grille');
-// const button = document.getElementById('button');
-// const case1 = document.getElementById('case');
-// const alien = document.getElementsByClassName('alien');
-// const enemies = [1,2,3,4,5,6,7,8,9,10,11,12,21,22,23,24,25,26,27,28,29,30,31,32,41,42,43,44,45,46,47,48,49,50,51,52]
-// let cellCount = 0;
-// // let soucoupe= doucment.getElementById('case-228');
-
-// button.onclick = function createVaisseaux() {
-//     for (let i = 0; i < 240; i++) {
-//         let vaisseaux;
-//         vaisseaux = document.createElement('div');
-//         vaisseaux.setAttribute('id', 'case-' + i);
-//         vaisseaux.style.border = 'solid red 1px';
-
-        
-//         enemies.forEach(position=>{
-//             if(position==i){
-//                 vaisseaux.className = 'alien';
-//             }
-//         })
-//         grille.appendChild(vaisseaux);
-//     }
-//     document.getElementById('case-229').className = 'soucoupe'
-
-// };
-
-
-
-
-
-
-// // si la case est 11 21 31 ... alors c'est le coter gauche et si la case est 20 40 50... alors c'est droite 
-// // mettre une classe a la div Pour générer le tableau de div si on continue le mouvement naturel de la chose il reviens a la ligne alors que nous on veux qu’il descende donc +1 +1 +1 +20 -1 -1 -1 0 +20 +1 +1 donc mettre un attribut a la div data-right = true donc tu fait +1 et dire que le comportement est different il faut qu’on dise que tout la colonne data - left = true  alors on fait +20 
-
-
 const body = document.getElementById('body');
 const grille = document.getElementById('grille');
 const button = document.getElementById('button');
@@ -46,11 +9,15 @@ let direction = 1;
 let getDown = false;
 let ennemyId;
 let isPlaying = false;
-var vitesseLaserFacile = 500
+var vitesseLaserFacile = 250
 var vitesseLaserMoyen = 1000
-var vitesseLaserDifficile = 1500
+var vitesseLaserDifficile = 1600
 var vitesseLaser
 
+
+
+// creation de la grille + ses niveaux de difficulter en fonction du laser
+// + le niveau est dur + le laser est lent
 function createVaisseaux(difficulter) {
     if (isPlaying) return;
     isPlaying = true;
@@ -61,9 +28,10 @@ function createVaisseaux(difficulter) {
     for (let i = 0; i < 240; i++) {
         let vaisseaux = document.createElement('div');
         vaisseaux.setAttribute('id', 'case-' + i);
-        vaisseaux.style.border = 'solid red 1px';
+        vaisseaux.style.border = 'solid red  1px';
         grille.appendChild(vaisseaux);
     }
+    // creation du vaisseaux a sa case initial au lancement du jeu 
     document.getElementById('case-229').className = 'soucoupe'
 
     const vaisseaux = document.querySelectorAll("#grille div");
@@ -71,13 +39,15 @@ function createVaisseaux(difficulter) {
         vaisseaux[ennemy].classList.add('alien');
     });
 
+
+    // ce qui fait bouger les alien 
     ennemyId = setInterval(ennemyMoove, 300);
         
         function ennemyMoove() {
 
             const debut_ligne = ennemy[0] % 20 == 0;
             const fin_ligne = ennemy[ennemy.length - 1] % 20 == 19;
-            console.log(ennemy);
+            // console.log(ennemy);
             ennemy.forEach(ennemy => {
                 vaisseaux[ennemy].classList.remove('alien');
             });
@@ -101,6 +71,9 @@ function createVaisseaux(difficulter) {
                 
             });
         
+
+
+            // -----POUR LE SON -------
             // if (ennemy[ennemy.length -1] > board.length - 16) {
             //     // son de l'explosion si le vaisseau est touché
             //     if (active_sound_effects) {
@@ -133,6 +106,14 @@ function createVaisseaux(difficulter) {
 }
 
 
+
+
+
+            // -----POUR BOUGER LE VAISSEAU--------
+// pour bouger le vaisseau avec les fleches et dans quel direction il va 
+// on fait sa pour la fleche du haut du bas gauche et droite
+// on le fait en recuperant l'id de la soucoupe + sa position de base 
+// on split le tiret pour lui indiquer ce que cst pas un chiffre 
 function moveVaisseaux (direction) {
     // console.log(direction);
     var soucoupe = document.getElementsByClassName('soucoupe');
@@ -177,20 +158,59 @@ if (direction == 'ArrowRight'){
 
 }
 
+
+// ------TOUCHE POUR LANCER LE LASER---
+// condition pour lancer le laser avec la barre d'espace donc le vide entre ' ' 
 if (direction == ' '){
     var positionLaser = (Number(soucoupeId[1])+haut);
     document.getElementById("case-"+positionLaser).classList.add('laser');
    var interval = setInterval(moveLaser,vitesseLaser)
 
+   
+
+//  -----BOUGER LE LASER ET SA DIRECTION -----
+// sert a bouger le laser on recupere l'id de la case + on ajoute la class laser a la prochaine position qui 
+// est a -20 car on veuc qu'elle monte qu'elle fasse une ligne droite jusqu'en haut
+// puis on clear l'interval qui est inferieur a 20 pour que le laser disparait quand il monte 
     function moveLaser(){
-        console.log('ok')
+        const allDiv = document.querySelectorAll('#grille div');
         var laser=  document.querySelectorAll('.laser');
-        console.log(laser)
+        // console.log(laser)
         laser.forEach(laser=>{  laser.classList.remove('laser')
         var id = laser.id.split('-');
         var laserNextPosition = id[1]-20;
         document.getElementById('case-'+laserNextPosition).classList.add('laser');
+
+        if (laserNextPosition > 19){
+            console.log(laserNextPosition)
+        
+        if (allDiv[laserNextPosition - 20].className == 'alien'){
+
+
+            removeAlien(laserNextPosition);
+        }
+
+    }
         if (laserNextPosition < 20)clearInterval(interval)})
+        
+       
+
+        
+        const aliens = document.querySelectorAll('.alien.laser');
+            aliens.forEach(alien => {
+            alien.classList.add('deleteme');
+});
+        const todelete  = document.querySelectorAll('div.deleteme');
+
+                allDiv.forEach((e)=>{
+                    if(e == todelete){
+                        e.classList.remove('alien','laser')
+                    }
+                })
+      
+
+
+
       
    }
 }
@@ -198,10 +218,31 @@ if (direction == ' '){
 }
 
 
+function removeAlien(position){
+    ennemy.splice(ennemy.indexOf(position),1) //retirer l'alien du tableau
+    const alien = document.querySelectorAll("#grille div")[position];
+    console.log(alien)
+
+    alien.classList.remove('alien');
+    clearInterval(interval)
+
+}
+
+
+
+
+
+
+
+
+
+
 
 // if (isPlaying){
+    // ajoute un événement à l'objet window pour détecter les événements de relâchement de touche avec "keyup" 
+    //  du coup la fonction se lance quand le joueur relache une touche 
 window.addEventListener("keyup", function (event) {
-   console.log(event);
+//    console.log(event);
 
       
         moveVaisseaux(event.key);
