@@ -10,10 +10,12 @@ let getDown = false;
 let ennemyId;
 let isPlaying = false;
 var vitesseLaserFacile = 500
-var vitesseLaserMoyen = 1000
-var vitesseLaserDifficile = 1600
+var vitesseLaserMoyen = 1500
+var vitesseLaserDifficile = 1800
 var vitesseLaser
 var vaisseaux; 
+const ennemymort = [];
+
 
 
 // bruit du piou piou
@@ -22,8 +24,6 @@ function bruit() {
     bruit.src = "songLaser.mp3";
     bruit.play();
 }
-
-
 
 // creation de la grille + ses niveaux de difficulter en fonction du laser
 // + le niveau est dur + le laser est lent
@@ -38,7 +38,7 @@ function createVaisseaux(difficulter) {
     for (let i = 0; i < 240; i++) {
         let vaisseaux = document.createElement('div');
         vaisseaux.setAttribute('id', 'case-' + i);
-        vaisseaux.style.border = 'solid red  1px';
+        vaisseaux.style.border = 'solid  1px';
         grille.appendChild(vaisseaux);
     }
     // creation du vaisseaux a sa case initial au lancement du jeu 
@@ -87,14 +87,8 @@ function createVaisseaux(difficulter) {
 }
 
 
-
-
-
-            // -----POUR BOUGER LE VAISSEAU--------
-// pour bouger le vaisseau avec les fleches et dans quel direction il va 
-// on fait sa pour la fleche du haut du bas gauche et droite
+// direction du vaisseaux ou il va + la soucoupe
 // on le fait en recuperant l'id de la soucoupe + sa position de base 
-// on split le tiret pour lui indiquer ce que cst pas un chiffre 
 function moveVaisseaux (direction) {
     // console.log(direction);
     var soucoupe = document.getElementsByClassName('soucoupe');
@@ -103,7 +97,7 @@ function moveVaisseaux (direction) {
     var bas = 20
     var left = -1
     var right = 1
-    // vaisseaux[ennemy].classList.remove('soucoupe');
+
 if (direction == 'ArrowDown'){
     var position = (Number(soucoupeId[1])+bas);
     if (position >239)return
@@ -150,68 +144,11 @@ if (direction == ' '){
    
 bruit()
 
-//  -----BOUGER LE LASER ET SA DIRECTION -----
-// sert a bouger le laser on recupere l'id de la case + on ajoute la class laser a la prochaine position qui 
-// est a -20 car on veuc qu'elle monte qu'elle fasse une ligne droite jusqu'en haut
-// puis on clear l'interval qui est inferieur a 20 pour que le laser disparait quand il monte 
-//     function moveLaser(){
-//         const allDiv = document.querySelectorAll('#grille div');
-//         var laser=  document.querySelectorAll('.laser');
-//         // console.log(laser)
-//         laser.forEach(laser=>{laser.classList.remove('laser')
-//         var id = laser.id.split('-');
-//         var laserNextPosition = id[1]-20;
-//         document.getElementById('case-'+laserNextPosition).classList.add('laser');
-
-//         if (laserNextPosition > 19){
-            
-//             console.log(laserNextPosition)
-        
-//         if (allDiv[laserNextPosition - 20].className == 'alien'){
-
-
-//             removeAlien(laserNextPosition);
-//         }
-
-//     }
-//         if (laserNextPosition < 20)clearInterval(interval)})
-        
-       
-
-        
-//         const aliens = document.querySelectorAll('.alien.laser');
-//             aliens.forEach(alien => {
-//             alien.classList.add('deleteme');
-// });
-//         const todelete  = document.querySelectorAll('div.deleteme');
-
-//                 allDiv.forEach((e)=>{
-//                     if(e == todelete){
-//                         e.classList.remove('alien','laser')
-//                     }
-//                 })
-      
-
-
-//    }
 }
-
-
 
 }
 
-
-
-
-// ---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
+// DEPLACER DU LASER PIOU PIOU VERS LE HAUT 
 function deplacementLaser2(){
 var laser=  document.querySelectorAll('.laser');
 var laserEnCours = laser[0].id.split('-')[1];
@@ -232,75 +169,40 @@ var laserEnCours = laser[0].id.split('-')[1];
                     ennemy.splice(ennemy.indexOf(laserEnCours),1)
                     // setTimeout(() => toutesLesDivs[laserEnCours].classList.remove('boom'), 50);
 
-
-                    resultats++;
-                    if(resultats === 36){
-                        affichage.textContent = "Bravo, c'est gagné !";
+                    if(ennemymort.length == ennemy.length){
+                        location.href="pageWin.html";
                         clearInterval(interval);
-                    } else {
-                        affichage.textContent = "Score : ${resultats}";
                     }
+
+                    // var position = (Number(soucoupeId[1]));
+                    // if(vaisseaux[position].classList.contains('alien')){
+                    // vaisseaux[position].classList.remove('soucoupe');
+                    // vaisseaux[position].classList.remove('alien');
+                    // location.href="pageDefaite.html"; 
+
+
+
+                }
+
+                   
 
                 }
             }
         }
-
-        // if(vaisseaux[i].classList.contains('boom'))
-        // vaisseaux[i].classList.remove('boom');
     }
 
 
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------------------------------------------
-
 
 // retirer l'alien pour le piou piou
 function removeAlien(position){
     ennemy.splice(ennemy.indexOf(position),1) //retirer l'alien du tableau
     const alien = document.querySelectorAll("#grille div")[position];
-
     alien.classList.remove('alien');
     clearInterval(interval)
-
-//     if (querySelectorAll(alien) >0) {
-//         alert("Gagner")         
-   
-// }
-
-
 }
-
-
-// if (isPlaying){
     // ajoute un événement à l'objet window pour détecter les événements de relâchement de touche avec "keyup" 
     //  du coup la fonction se lance quand le joueur relache une touche 
-window.addEventListener("keyup", function (event) {
-//    console.log(event);
-
-      
+window.addEventListener("keyup", function (event) {      
         moveVaisseaux(event.key);
-       
-  
-
 }, true);
-// }

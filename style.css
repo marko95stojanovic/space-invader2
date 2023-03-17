@@ -101,3 +101,63 @@ h5 {
     background-size: cover;
 
 }
+
+
+
+.win{
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 10%;
+    font-size: 100px;
+}
+
+
+.boutton-rejouer-win{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.boutton-accueil{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.global-div-bouton{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    justify-content: space-around;
+}
