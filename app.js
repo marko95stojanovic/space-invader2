@@ -9,11 +9,14 @@ let direction = 1;
 let getDown = false;
 let ennemyId;
 let isPlaying = false;
-var vitesseLaserFacile = 250
+var vitesseLaserFacile = 500
 var vitesseLaserMoyen = 1000
 var vitesseLaserDifficile = 1600
 var vitesseLaser
+var vaisseaux; 
 
+
+// bruit du piou piou
 function bruit() {
     var bruit = new Audio();
     bruit.src = "songLaser.mp3";
@@ -41,7 +44,7 @@ function createVaisseaux(difficulter) {
     // creation du vaisseaux a sa case initial au lancement du jeu 
     document.getElementById('case-229').className = 'soucoupe'
 
-    const vaisseaux = document.querySelectorAll("#grille div");
+    vaisseaux = document.querySelectorAll("#grille div");
     ennemy.forEach(ennemy => {
         vaisseaux[ennemy].classList.add('alien');
     });
@@ -77,38 +80,9 @@ function createVaisseaux(difficulter) {
                     vaisseaux[ennemy].classList.add('alien');
                 
             });
-        
+           
 
-
-            // -----POUR LE SON -------
-            // if (ennemy[ennemy.length -1] > board.length - 16) {
-            //     // son de l'explosion si le vaisseau est touché
-            //     if (active_sound_effects) {
-            //         var death = new Audio('assets/sound/explosion.mp3');
-            //         death.volume = 0.5;
-            //         death.play()
-            //     }
-            //     location.href="perdre.html";
-            //     clearInterval(ennemyId);
-            // }
-        
-            // if (board[pos_ship].classList.contains('alien')) {
-            //     // son de l'explosion si le vaisseau est touché
-            //     if (active_sound_effects) {
-            //         var death = new Audio('assets/sound/explosion.mp3');
-            //         death.volume = 0.5;
-            //         death.play()
-            //     }
-            //     location.href="perdre.html";
-            //     board[pos_ship].classList.add("boum");
-            //     clearInterval(ennemyId);
-        
-            // }
-        
-            // if (touch.length == ennemy.length) {
-            //     location.href="gagner.html";
-            //     clearInterval(ennemyId);
-            // }
+           
         }
 }
 
@@ -171,7 +145,7 @@ if (direction == 'ArrowRight'){
 if (direction == ' '){
     var positionLaser = (Number(soucoupeId[1])+haut);
     document.getElementById("case-"+positionLaser).classList.add('laser');
-   var interval = setInterval(moveLaser,vitesseLaser)
+   var interval = setInterval(deplacementLaser2,vitesseLaser)
 
    
 bruit()
@@ -180,72 +154,141 @@ bruit()
 // sert a bouger le laser on recupere l'id de la case + on ajoute la class laser a la prochaine position qui 
 // est a -20 car on veuc qu'elle monte qu'elle fasse une ligne droite jusqu'en haut
 // puis on clear l'interval qui est inferieur a 20 pour que le laser disparait quand il monte 
-    function moveLaser(){
-        const allDiv = document.querySelectorAll('#grille div');
-        var laser=  document.querySelectorAll('.laser');
-        // console.log(laser)
-        laser.forEach(laser=>{  laser.classList.remove('laser')
-        var id = laser.id.split('-');
-        var laserNextPosition = id[1]-20;
-        document.getElementById('case-'+laserNextPosition).classList.add('laser');
+//     function moveLaser(){
+//         const allDiv = document.querySelectorAll('#grille div');
+//         var laser=  document.querySelectorAll('.laser');
+//         // console.log(laser)
+//         laser.forEach(laser=>{laser.classList.remove('laser')
+//         var id = laser.id.split('-');
+//         var laserNextPosition = id[1]-20;
+//         document.getElementById('case-'+laserNextPosition).classList.add('laser');
 
-        if (laserNextPosition > 19){
-            console.log(laserNextPosition)
+//         if (laserNextPosition > 19){
+            
+//             console.log(laserNextPosition)
         
-        if (allDiv[laserNextPosition - 20].className == 'alien'){
+//         if (allDiv[laserNextPosition - 20].className == 'alien'){
 
 
-            removeAlien(laserNextPosition);
-        }
+//             removeAlien(laserNextPosition);
+//         }
 
-    }
-        if (laserNextPosition < 20)clearInterval(interval)})
+//     }
+//         if (laserNextPosition < 20)clearInterval(interval)})
         
        
 
         
-        const aliens = document.querySelectorAll('.alien.laser');
-            aliens.forEach(alien => {
-            alien.classList.add('deleteme');
-});
-        const todelete  = document.querySelectorAll('div.deleteme');
+//         const aliens = document.querySelectorAll('.alien.laser');
+//             aliens.forEach(alien => {
+//             alien.classList.add('deleteme');
+// });
+//         const todelete  = document.querySelectorAll('div.deleteme');
 
-                allDiv.forEach((e)=>{
-                    if(e == todelete){
-                        e.classList.remove('alien','laser')
+//                 allDiv.forEach((e)=>{
+//                     if(e == todelete){
+//                         e.classList.remove('alien','laser')
+//                     }
+//                 })
+      
+
+
+//    }
+}
+
+
+
+}
+
+
+
+
+// ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+function deplacementLaser2(){
+var laser=  document.querySelectorAll('.laser');
+var laserEnCours = laser[0].id.split('-')[1];
+
+    for(let i = 0; i < vaisseaux.length; i++){
+        if(vaisseaux[i].classList.contains('laser')){
+            vaisseaux[i].classList.remove('laser');
+            laserEnCours = i-20;
+            if( laserEnCours > 0 ){
+                vaisseaux[laserEnCours].classList.add('laser');
+
+
+                if(vaisseaux[laserEnCours].classList.contains('alien')){
+                    vaisseaux[laserEnCours].classList.remove('laser');
+                    vaisseaux[laserEnCours].classList.remove('alien');
+                    // vaisseaux[laserEnCours].classList.add('boom');
+                    // ennemy = ennemy.filter(el => el !== laserEnCours);
+                    ennemy.splice(ennemy.indexOf(laserEnCours),1)
+                    // setTimeout(() => toutesLesDivs[laserEnCours].classList.remove('boom'), 50);
+
+
+                    resultats++;
+                    if(resultats === 36){
+                        affichage.textContent = "Bravo, c'est gagné !";
+                        clearInterval(interval);
+                    } else {
+                        affichage.textContent = "Score : ${resultats}";
                     }
-                })
-      
+
+                }
+            }
+        }
+
+        // if(vaisseaux[i].classList.contains('boom'))
+        // vaisseaux[i].classList.remove('boom');
+    }
 
 
 
-      
-   }
+
+
 }
 
 
 
-}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+
+
+// retirer l'alien pour le piou piou
 function removeAlien(position){
     ennemy.splice(ennemy.indexOf(position),1) //retirer l'alien du tableau
     const alien = document.querySelectorAll("#grille div")[position];
-    console.log(alien)
 
     alien.classList.remove('alien');
     clearInterval(interval)
 
+//     if (querySelectorAll(alien) >0) {
+//         alert("Gagner")         
+   
+// }
+
+
 }
-
-
-
-
-
-
-
-
-
 
 
 // if (isPlaying){
