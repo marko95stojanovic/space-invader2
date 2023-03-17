@@ -173,17 +173,8 @@ var laserEnCours = laser[0].id.split('-')[1];
                         location.href="pageWin.html";
                         clearInterval(interval);
                     }
-
-                    // var position = (Number(soucoupeId[1]));
-                    // if(vaisseaux[position].classList.contains('alien')){
-                    // vaisseaux[position].classList.remove('soucoupe');
-                    // vaisseaux[position].classList.remove('alien');
-                    // location.href="pageDefaite.html"; 
-
-
-
-                }
-
+                    
+                    
                    
 
                 }
