@@ -1,3 +1,4 @@
+/* PAGE POUR LE JEU + GRILLE + SCORE */
 body {
    
     background: url(espace.gif) no-repeat center center fixed; 
@@ -6,9 +7,6 @@ body {
     -o-background-size: cover;
     background-size: cover;
   }
-
-
-
 .grille {
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +18,6 @@ body {
     background: black;
     animation: background-defile 5s linear infinite;
 }
-
 @keyframes background-defile {
     from {
         background-position-y: 0px;
@@ -29,11 +26,11 @@ body {
         background-position-y: 256px;
     }
 }
-
 h3 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     margin: 20px 0;
+    font-size: 20px;
 }
 .grille div {
     width: 25px;
@@ -53,24 +50,54 @@ h3 {
 .boom {
     background-color: red;
 }
+
 .laser {
-    background-color: orange;
+    background-image: url(laser.png);
+    background-size: 2px 15px;
 }
 
 h5 {
     color: white;
 }
-
 .case1{
     color : pink;
     width: 5px;
     height: 10px;
     border: solid 2px red;
 }
-
 .boutton-jouer{
     display: flex;
     justify-content: center;
     justify-items: center;
     margin-top: 2%;
+    background-color: #110029;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+    font-family: 'Press Start 2P', cursive;
+
+}
+.boutton-jouer1{
+    display: flex;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.soucoupe{
+    background: url(soucoupe.png) ; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
